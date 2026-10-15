@@ -1,0 +1,53 @@
+# Discovery only. Exact source-host allowlist. Extracted destinations are never fetched.
+queries:
+  - school proxy links
+  - Interstellar proxy links
+  - unblocked games
+  - Rammerhead proxy
+  - GoGuardian unblocked websites
+  - GoGuardian proxy links
+  - School Chromebook proxies
+  - School proxy mirrors
+  - StudyHub proxy
+  - Ultraviolet proxy
+  - Scramjet proxy
+  - New Chromebook bypass websites
+  - School proxy links 2026
+allowed_hosts:
+  - api.github.com
+  - www.googleapis.com
+  - api.bsky.app
+  - hn.algolia.com
+  - hacker-news.firebaseio.com
+  - scope.flarum.cloud
+# Optional public pages with permitted robots paths (fetched, never their links).
+pages: []
+github_repos: [bns34/Unblocked-Sites, wea-f/ByePassHub]
+youtube_ids: [rEgMbShYszQ, xanQQme-mvg, YHN3C5Ag4yk, 4p4_gvuim4Y]
+max_docs: 60
+max_queries: 4
+max_results: 5
+timeout_seconds: 20
+max_bytes: 2097152
+# GitHub search is 10 requests/minute anonymous; this conservative spacing
+# also applies to other source hosts. GitHub uses its own search pacing.
+interval_ms: 1000
+youtube_comments: true
+youtube_replies: false
+max_comment_pages: 1
+cache_hours: 24
+stale_days: 30
+search_endpoint: ''
+# V1: persisted validator metadata; raw source bodies are never cached to disk.
+flarum_url: https://scope.flarum.cloud
+flarum_queries: [StudyHub, Interstellar, Rammerhead, GoGuardian]
+expand_queries: true
+rates_ms:
+  api.github.com: 1000
+  hn.algolia.com: 1000
+  hacker-news.firebaseio.com: 500
+  scope.flarum.cloud: 1000
+query_sets:
+  projects: [Interstellar proxy links, Ultraviolet proxy, Rammerhead proxy, Scramjet proxy]
+  school: [school proxy links, GoGuardian unblocked websites, School Chromebook proxies, StudyHub proxy]
+  games: [unblocked games, unblocked school games, school games proxy]

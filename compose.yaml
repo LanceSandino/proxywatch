@@ -1,0 +1,44 @@
+services:
+  proxywatch:
+    build:
+      context: .
+    image: proxywatch:local
+    user: "10001:10001"
+    init: true
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      PROXYWATCH_CONFIG: /app/config.example.yaml
+      PROXYWATCH_DB: /data/proxywatch.db
+      # Credentials come from secret files, never environment values, so
+      # they do not appear in `docker inspect` or process listings.
+      GITHUB_TOKEN_FILE: /run/secrets/github_token
+      YOUTUBE_API_KEY_FILE: /run/secrets/youtube_api_key
+      SEARCH_API_KEY_FILE: /run/secrets/search_api_key
+    secrets:
+      - github_token
+      - youtube_api_key
+      - search_api_key
+    # Discovery is network-bound; measured peak use is far below these caps.
+    cpus: 1.0
+    mem_limit: 512m
+    pids_limit: 128
+    volumes:
+      - ./data:/data
+      - ./output:/output
+      - ./config.example.yaml:/app/config.example.yaml:ro
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    command: ["doctor"]
+
+# Create with scripts/init-secrets.sh. An empty file means "not configured".
+secrets:
+  github_token:
+    file: ./secrets/github_token
+  youtube_api_key:
+    file: ./secrets/youtube_api_key
+  search_api_key:
+    file: ./secrets/search_api_key

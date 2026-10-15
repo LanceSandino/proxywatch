@@ -1,0 +1,13 @@
+#!/bin/bash
+# Purpose: refuse commits whose staged changes contain credential-shaped values.
+# Enable once per clone: git config core.hooksPath .githooks
+set -euo pipefail
+pattern='(gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|AIza[0-9A-Za-z_-]{35}|BSA[A-Za-z0-9_-]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----)'
+if git diff --cached -U0 --no-color | grep -E '^\+' | grep -Eq "$pattern"; then
+  echo "pre-commit: staged changes contain what looks like an API key or token. Commit refused." >&2
+  exit 1
+fi
+if git diff --cached --name-only | grep -Eq '^(secrets/|\.env$)'; then
+  echo "pre-commit: refusing to commit secrets/ or .env" >&2
+  exit 1
+fi

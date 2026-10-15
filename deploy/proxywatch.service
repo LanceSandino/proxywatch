@@ -1,0 +1,24 @@
+[Unit]
+Description=ProxyWatch bounded public-source discovery
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+ConditionPathExists=/opt/proxywatch/compose.yaml
+ConditionPathExists=/opt/proxywatch/config.example.yaml
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/proxywatch
+ExecStart=/usr/bin/docker compose run --rm --no-deps proxywatch discover
+# All HTTP operations are bounded by the application configuration. Allow the
+# bounded job to finish rather than leave a container behind at a unit timeout.
+TimeoutStartSec=infinity
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/opt/proxywatch/data
+ProtectHome=true
+PrivateTmp=true
+StandardOutput=journal
+StandardError=journal
+

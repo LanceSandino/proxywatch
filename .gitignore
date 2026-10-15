@@ -1,0 +1,12 @@
+/bin/
+/data/
+.env
+*.db-wal
+*.db-shm
+/output/*.sqlite-wal
+/output/*.sqlite-shm
+/secrets/
+/output/
+/dist/
+*.sqlite
+*.db
