@@ -125,10 +125,13 @@ Still to do:
 make test        # go test ./...
 go test -race ./...
 go vet ./...
+make vulncheck   # govulncheck ./...
 make fixture     # offline end-to-end run
 ```
 
-Go 1.25, SQLite through `mattn/go-sqlite3` (CGO), and no other services. Layout: `cmd/proxywatch` (CLI), `internal/{config,sources,fetch,extract,engine,store,export,platform,blocklist,secrets}`. Architecture: [docs/architecture.md](docs/architecture.md). Settled design decisions: [DECISIONS.md](DECISIONS.md).
+CI runs formatting, vet, build, race tests, govulncheck and a container build on every push and pull request, and repeats them weekly.
+
+Go 1.27, SQLite through `mattn/go-sqlite3` (CGO), and no other services. Layout: `cmd/proxywatch` (CLI), `internal/{config,sources,fetch,extract,engine,store,export,platform,blocklist,secrets}`. Architecture: [docs/architecture.md](docs/architecture.md). Settled design decisions: [DECISIONS.md](DECISIONS.md).
 
 ## Responsible use
 

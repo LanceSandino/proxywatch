@@ -1,7 +1,7 @@
 GO ?= go
 BIN ?= bin/proxywatch
 
-.PHONY: build test vet check doctor fixture docker-build docker-doctor
+.PHONY: build test vet vulncheck check doctor fixture docker-build docker-doctor
 build:
 	mkdir -p $(dir $(BIN))
 	CGO_ENABLED=1 $(GO) build -trimpath -o $(BIN) ./cmd/proxywatch
@@ -11,6 +11,10 @@ test:
 
 vet:
 	$(GO) vet ./...
+
+# Reports known vulnerabilities reachable from ProxyWatch code.
+vulncheck:
+	$(GO) run golang.org/x/vuln/cmd/govulncheck@v1.9.0 ./...
 
 check: test vet
 
