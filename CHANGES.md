@@ -13,7 +13,7 @@ timestamp: "2026-10-14T23:30:00Z"
 ```
 
 ```yaml
-id: CU-20261024-01
+id: CU-PUBLIC-002
 type: fix
 version: "1.0.1"
 title: "Security release 1.0.1: Go 1.27.3, Debian trixie and dependency updates"
