@@ -3,10 +3,10 @@ module proxywatch
 go 1.27.4
 
 require (
-	github.com/mattn/go-sqlite3 v1.14.52
+	github.com/mattn/go-sqlite3 v1.14.53
 	github.com/temoto/robotstxt v1.1.2
-	golang.org/x/net v0.62.0
+	golang.org/x/net v0.63.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
-require golang.org/x/text v0.43.0 // indirect
+require golang.org/x/text v0.44.0 // indirect
