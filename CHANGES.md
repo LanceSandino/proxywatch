@@ -24,3 +24,15 @@ related_tests: ["go test -race ./...", "make vulncheck", "TestV1OfflineCLIWorkfl
 author: "ProxyWatch maintainers"
 timestamp: "2026-10-24T12:45:00Z"
 ```
+
+```yaml
+id: CU-PUBLIC-003
+type: fix
+title: "Go 1.27.4 and golang.org/x/net 0.62.0"
+description: "Builds with Go 1.27.4 (go directive 1.27.4; Dockerfile golang:1.27.4-trixie pinned by digest, replacing 1.27.3). Fixes GO-2026-6859 (net/http, fixed in go1.27.4) and GO-2026-6860 (golang.org/x/net/html, reached through extract.go html.Parse; x/net 0.61.0 -> 0.62.0), both reported reachable by the weekly govulncheck run on main and failing CI there and on the open Dependabot pull requests."
+impact: medium
+affected_modules: ["go.mod", "go.sum", "Dockerfile"]
+related_tests: ["make vulncheck", "go test -race ./...", ".github/workflows/ci.yml"]
+author: "ProxyWatch maintainers"
+timestamp: "2026-11-25T23:35:00Z"
+```
