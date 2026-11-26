@@ -36,3 +36,16 @@ related_tests: ["make vulncheck", "go test -race ./...", ".github/workflows/ci.y
 author: "ProxyWatch maintainers"
 timestamp: "2026-11-25T23:35:00Z"
 ```
+
+```yaml
+id: CU-PUBLIC-004
+type: fix
+version: "1.0.2"
+title: "Security release 1.0.2: Go 1.27.4, x/net 0.63.0, go-sqlite3 1.14.53 and Debian 13.8 runtime"
+description: "Releases CU-PUBLIC-003 and the follow-up dependency updates. Builds with Go 1.27.4 (GO-2026-6859, net/http) and golang.org/x/net 0.63.0 (GO-2026-6860, fixed in 0.62.0; reachable through extract.go html.Parse), both reported reachable by govulncheck on 1.0.1. Updates go-sqlite3 to 1.14.53 and the indirect golang.org/x/text to 0.44.0, and refreshes the debian:trixie-slim runtime image pinned by digest from Debian 13.7 to 13.8."
+impact: medium
+affected_modules: ["go.mod", "go.sum", "Dockerfile"]
+related_tests: ["go test -race ./...", "make vulncheck", ".github/workflows/ci.yml"]
+author: "ProxyWatch maintainers"
+timestamp: "2026-11-26T00:15:00Z"
+```
